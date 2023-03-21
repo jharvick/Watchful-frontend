@@ -7,7 +7,7 @@ export function ItemsNew(props) {
 
   return (
     <div>
-      <hi>New watch</hi>
+      <h1>New watch</h1>
       <form>
         <div>
           Name: <input name="name" type="text" />
