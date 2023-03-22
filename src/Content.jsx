@@ -31,9 +31,34 @@ export function Content() {
     setIsItemsShowVisible(false);
   };
 
+  const handleUpdateItem = (id, params, successCallback) => {
+    console.log("handleUpdateItem", params);
+    axios.patch("http://localhost:3000/items/${id}.json", params).then((response) => {
+      setItems(
+        items.map((item) => {
+          if (item.id === response.data.id) {
+            return response.data;
+          } else {
+            return item;
+          }
+        })
+      );
+      successCallback();
+      handleClose();
+    });
+  };
+
   const handleClose = () => {
     console.log("handleClose");
     setIsItemsShowVisible(false);
+  };
+
+  const handleDestroyItem = (item) => {
+    console.log("handleDestroyItem", item);
+    axios.delete("http://localhost:3000/items/${item.id}.json").then((response) => {
+      setItems(items.filter((p) => p.id !== item.id));
+      handleClose();
+    });
   };
 
   useEffect(handleIndexItems, []);
@@ -43,7 +68,7 @@ export function Content() {
       <ItemsNew onCreateItem={handleCreateItem} />
       <ItemsIndex items={items} onShowItem={handleShowItem} />
       <Modal show={isItemsShowVisible} onClose={handleClose}>
-        <ItemsShow item={currentItem} />
+        <ItemsShow item={currentItem} onUpdateItem={handleUpdateItem} onDestroyItem={handleDestroyItem} />
       </Modal>
     </div>
   );
