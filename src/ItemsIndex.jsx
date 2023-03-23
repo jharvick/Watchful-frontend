@@ -9,6 +9,7 @@ export function ItemsIndex(props) {
           <p>Description: {item.description}</p>
           <p>Category: {item.category}</p>
           <button onClick={() => props.onShowItem(item)}>More info</button>
+          <button onClick={() => props.onCreateFavorite(favorite)}>Add favorite</button>
         </div>
       ))}
     </div>

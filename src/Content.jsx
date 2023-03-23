@@ -4,11 +4,14 @@ import { ItemsIndex } from "./ItemsIndex";
 import { ItemsNew } from "./ItemsNew";
 import { ItemsShow } from "./ItemsShow";
 import { Modal } from "./Modal";
+import { FavoritesIndex } from "./FavoritesIndex";
+import { FavoritesNew } from "./FavoritesNew";
 
 export function Content() {
   const [items, setItems] = useState([]);
   const [isItemsShowVisible, setIsItemsShowVisible] = useState(false);
   const [currentItem, setCurrentItem] = useState({});
+  const [favorites, setFavorites] = useState([]);
 
   const handleIndexItems = () => {
     console.log("handleIndexItems");
@@ -18,10 +21,26 @@ export function Content() {
     });
   };
 
+  const handleIndexFavorites = () => {
+    console.log("handleIndexFavorites");
+    axios.get("http://localhost:3000/favorites.json").then((response) => {
+      console.log(response.data);
+      setFavorites(response.data);
+    });
+  };
+
   const handleCreateItem = (params, successCallback) => {
     console.log("handleCreateItem", params);
     axios.post("http://localhost:3000/items.json", params).then((response) => {
       setItems([...items, response.data]);
+      successCallback();
+    });
+  };
+
+  const handleCreateFavorite = (params, successCallback) => {
+    console.log("handleCreateFavorite", params);
+    axios.post("http://localhost:3000/favorites.json", params).then((response) => {
+      setFavorites([...favorites, response.data]);
       successCallback();
     });
   };
@@ -62,9 +81,12 @@ export function Content() {
   };
 
   useEffect(handleIndexItems, []);
+  useEffect(handleIndexFavorites, []);
 
   return (
     <div>
+      <FavoritesNew onCreateFavorite={handleCreateFavorite} />
+      <FavoritesIndex favorites={favorites} />
       <ItemsNew onCreateItem={handleCreateItem} />
       <ItemsIndex items={items} onShowItem={handleShowItem} />
       <Modal show={isItemsShowVisible} onClose={handleClose}>
