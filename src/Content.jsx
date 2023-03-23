@@ -6,6 +6,9 @@ import { ItemsShow } from "./ItemsShow";
 import { Modal } from "./Modal";
 import { FavoritesIndex } from "./FavoritesIndex";
 import { FavoritesNew } from "./FavoritesNew";
+import { Signup } from "./Signup";
+import { Login } from "./Login";
+import { LogoutLink } from "./LogoutLink";
 
 export function Content() {
   const [items, setItems] = useState([]);
@@ -85,6 +88,9 @@ export function Content() {
 
   return (
     <div>
+      <Signup />
+      <Login />
+      <LogoutLink />
       <FavoritesNew onCreateFavorite={handleCreateFavorite} />
       <FavoritesIndex favorites={favorites} />
       <ItemsNew onCreateItem={handleCreateItem} />
