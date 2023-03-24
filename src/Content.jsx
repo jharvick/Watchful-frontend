@@ -9,12 +9,15 @@ import { FavoritesNew } from "./FavoritesNew";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
+import { MoviesIndex } from "./MoviesIndex";
 
 export function Content() {
   const [items, setItems] = useState([]);
   const [isItemsShowVisible, setIsItemsShowVisible] = useState(false);
   const [currentItem, setCurrentItem] = useState({});
   const [favorites, setFavorites] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [searchTerms, setSearchTerms] = useState("");
 
   const handleIndexItems = () => {
     console.log("handleIndexItems");
@@ -26,9 +29,17 @@ export function Content() {
 
   const handleIndexFavorites = () => {
     console.log("handleIndexFavorites");
-    axios.get("http://localhost:3000/favorites.json").then((response) => {
+    axios.get("http://localhost:3000/movies.json?search_terms=" + searchTerms).then((response) => {
       console.log(response.data);
       setFavorites(response.data);
+    });
+  };
+
+  const handleIndexMovies = () => {
+    console.log("handleIndexMovies");
+    axios.get("http://localhost:3000/movies.json").then((response) => {
+      console.log(response.data);
+      setMovies(response.data);
     });
   };
 
@@ -88,11 +99,14 @@ export function Content() {
 
   return (
     <div>
+      <MoviesIndex movies={movies} />
+      <div>
+        Search: <input value={searchTerms} onChange={(event) => setSearchTerms(event.target.value)} type="text" />
+      </div>
       <Signup />
       <Login />
       <LogoutLink />
       <FavoritesNew onCreateFavorite={handleCreateFavorite} />
-      <FavoritesIndex favorites={favorites} />
       <ItemsNew onCreateItem={handleCreateItem} />
       <ItemsIndex items={items} onShowItem={handleShowItem} />
       <Modal show={isItemsShowVisible} onClose={handleClose}>
