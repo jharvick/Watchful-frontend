@@ -5,7 +5,7 @@ export function ItemsIndex(props) {
 
   return (
     <div>
-      <h1>All items</h1>
+      <h1>Watchlist</h1>
       Search: <input type="text" value={searchFilter} onChange={(event) => setSearchFilter(event.target.value)} />
       {props.items
         .filter((item) => item.name.toLowerCase().includes(searchFilter.toLowerCase()))

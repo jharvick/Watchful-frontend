@@ -1,12 +1,13 @@
 export function MoviesIndex(props) {
   return (
     <div>
-      <h1>All movies</h1>
+      <h1>What to watch?</h1>
       {props.movies.map((movie) => (
-        <div key={movie.title}>
-          <h2>{movie.title}</h2>
-          <img src={movie.urlToImage} alt="" width="400" />
-          <p>{movie.description}</p>
+        <div key={movie.imdbID}>
+          <h2>{movie.Title}</h2>
+          <img src={movie.Poster} alt="" width="200" />
+          <p>{movie.Type}</p>
+          <p>{movie.Year}</p>
         </div>
       ))}
     </div>

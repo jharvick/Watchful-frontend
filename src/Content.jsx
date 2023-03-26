@@ -17,8 +17,6 @@ export function Content() {
   const [isItemsShowVisible, setIsItemsShowVisible] = useState(false);
   const [currentItem, setCurrentItem] = useState({});
   const [favorites, setFavorites] = useState([]);
-  const [movies, setMovies] = useState([]);
-  const [searchTerms, setSearchTerms] = useState("");
 
   const handleIndexItems = () => {
     console.log("handleIndexItems");
@@ -30,17 +28,9 @@ export function Content() {
 
   const handleIndexFavorites = () => {
     console.log("handleIndexFavorites");
-    axios.get("http://localhost:3000/movies.json?search_terms=" + searchTerms).then((response) => {
+    axios.get("http://localhost:3000/favorites.json").then((response) => {
       console.log(response.data);
       setFavorites(response.data);
-    });
-  };
-
-  const handleIndexMovies = () => {
-    console.log("handleIndexMovies");
-    axios.get("http://localhost:3000/movies.json").then((response) => {
-      console.log(response.data);
-      setMovies(response.data);
     });
   };
 
@@ -100,17 +90,16 @@ export function Content() {
 
   return (
     <div>
-      <div>
-        Search: <input value={searchTerms} onChange={(event) => setSearchTerms(event.target.value)} type="text" />
-      </div>
       <div className="container">
         <Routes>
+          <Route path="/" element={<ItemsNew onCreateItem={handleCreateItem} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/movies" element={<MoviesIndex movies={movies} />} />
+          <Route path="/movies" element={<MoviesIndex movies={[]} />} />
           <Route path="/items/new" element={<ItemsNew onCreateItem={handleCreateItem} />} />
           <Route path="/favorites/new" element={<FavoritesNew onCreateFavorite={handleCreateFavorite} />} />
           <Route path="/items" element={<ItemsIndex items={items} onShowItem={handleShowItem} />} />
+          <Route path="/favorites" element={<FavoritesIndex favorites={favorites} />} />
         </Routes>
 
         <Modal show={isItemsShowVisible} onClose={handleClose}>

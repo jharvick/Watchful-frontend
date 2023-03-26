@@ -7,7 +7,7 @@ export function Header() {
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            Navbar
+            Watchful
           </a>
           <button
             className="navbar-toggler"
@@ -29,12 +29,17 @@ export function Header() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/items">
-                  All items
+                  Watchlist
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/items/new">
-                  New item
+                  New Watch
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/favorites">
+                  Favorites
                 </Link>
               </li>
               {localStorage.jwt === undefined ? (
@@ -65,14 +70,6 @@ export function Header() {
           </div>
         </div>
       </nav>
-      <Link to="/">Home</Link> | <Link to="/items">All items</Link> | <Link to="/items/new">New item</Link> |{" "}
-      {localStorage.jwt === undefined ? (
-        <>
-          <Link to="/signup">Signup</Link> | <Link to="/login">Login</Link>
-        </>
-      ) : (
-        <LogoutLink />
-      )}
     </header>
   );
 }
