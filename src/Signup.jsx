@@ -3,6 +3,8 @@ import { useState } from "react";
 
 export function Signup() {
   const [errors, setErrors] = useState([]);
+  const [name, setName] = useState("");
+  const [status, setStatus] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,12 +20,14 @@ export function Signup() {
       .catch((error) => {
         console.log(error.response.data.errors);
         setErrors(error.response.data.errors);
+        setStatus(error.response.status);
       });
   };
 
   return (
     <div id="signup">
       <h1>Signup</h1>
+      {status ? <img src={`https://http.cat/${status}`} /> : null}
       <ul>
         {errors.map((error) => (
           <li key={error}>{error}</li>
@@ -31,7 +35,8 @@ export function Signup() {
       </ul>
       <form onSubmit={handleSubmit}>
         <div>
-          Name: <input name="name" type="text" />
+          Name: <input value={name} onChange={(event) => setName(event.target.value)} name="name" type="text" />
+          <small>{20 - name.length} characters remaining</small>
         </div>
         <div>
           Email: <input name="email" type="email" />

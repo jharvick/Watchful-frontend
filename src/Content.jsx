@@ -10,6 +10,7 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
 import { MoviesIndex } from "./MoviesIndex";
+import { Routes, Route } from "react-router-dom";
 
 export function Content() {
   const [items, setItems] = useState([]);
@@ -99,19 +100,23 @@ export function Content() {
 
   return (
     <div>
-      <MoviesIndex movies={movies} />
       <div>
         Search: <input value={searchTerms} onChange={(event) => setSearchTerms(event.target.value)} type="text" />
       </div>
-      <Signup />
-      <Login />
-      <LogoutLink />
-      <FavoritesNew onCreateFavorite={handleCreateFavorite} />
-      <ItemsNew onCreateItem={handleCreateItem} />
-      <ItemsIndex items={items} onShowItem={handleShowItem} />
-      <Modal show={isItemsShowVisible} onClose={handleClose}>
-        <ItemsShow item={currentItem} onUpdateItem={handleUpdateItem} onDestroyItem={handleDestroyItem} />
-      </Modal>
+      <div className="container">
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/movies" element={<MoviesIndex movies={movies} />} />
+          <Route path="/items/new" element={<ItemsNew onCreateItem={handleCreateItem} />} />
+          <Route path="/favorites/new" element={<FavoritesNew onCreateFavorite={handleCreateFavorite} />} />
+          <Route path="/items" element={<ItemsIndex items={items} onShowItem={handleShowItem} />} />
+        </Routes>
+
+        <Modal show={isItemsShowVisible} onClose={handleClose}>
+          <ItemsShow item={currentItem} onUpdateItem={handleUpdateItem} onDestroyItem={handleDestroyItem} />
+        </Modal>
+      </div>
     </div>
   );
 }
