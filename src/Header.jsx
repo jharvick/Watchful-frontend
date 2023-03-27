@@ -4,7 +4,7 @@ import { LogoutLink } from "./LogoutLink";
 export function Header() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Watchful

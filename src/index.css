@@ -1,3 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap");
+
 html {
   scroll-behavior: smooth;
+}
+
+#root {
+  font-family: Futura, Trebuchet MS, Arial, sans-serif;
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/darkness.png");
+  background-image: cover;
+}
+
+.card img {
+  height: 450px;
+  object-fit: cover;
+}
+
+.navbar-brand {
+  font-family: "Climate Crisis", cursive;
+  font-size: 3em !important;
 }

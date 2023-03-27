@@ -12,13 +12,21 @@ export function ItemsIndex(props) {
           .map((item) => (
             <div key={item.id} className="col-sm-4 mb-4">
               <div className="card">
-                <h2 className="card-title">{item.name}</h2>
+                <img className="card-img-top" src={item.image_url} alt="Card image cap" />
                 <div className="card-body">
-                  <img src={item.image_url} className="card-img-top-200" alt="" />
-                  <p className="card-text">Description: {item.description}</p>
+                  <h3 className="card-title">{item.name}</h3>
                   <p className="card-text">Category: {item.category}</p>
-                  <button onClick={() => props.onShowItem(item)}>More info</button>
-                  <button onClick={() => props.onCreateFavorite(favorite)}>Add favorite</button>
+                  <p className="card-text">Description: {item.description}</p>
+                  <button type="button" class="btn btn-outline-success" onClick={() => props.onShowItem(item)}>
+                    More info
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-success"
+                    onClick={() => props.onCreateFavorite(favorite)}
+                  >
+                    Add favorite
+                  </button>
                 </div>
               </div>
             </div>
