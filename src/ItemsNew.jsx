@@ -7,10 +7,12 @@ export function ItemsNew(props) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
     props.onCreateItem(params, () => event.target.reset());
+    window.location.href = "/items";
   };
 
   const handleIndexMovies = () => {
@@ -25,6 +27,7 @@ export function ItemsNew(props) {
     setName(movie.Title);
     setImage(movie.Poster);
     setCategory(movie.Type);
+    setDescription(movie.Year);
   };
 
   return (
@@ -68,7 +71,13 @@ export function ItemsNew(props) {
               />
             </div>
             <div>
-              Year: <input name="description" type="text" />
+              Year:{" "}
+              <input
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                name="description"
+                type="text"
+              />
             </div>
             <button type="submit">Create watch</button>
           </form>

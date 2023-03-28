@@ -61,12 +61,10 @@ export function Header() {
                 </li>
               )}
             </ul>
-            <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+            <img
+              src="https://media1.giphy.com/media/65LcwStZ4smNeDa6jQ/giphy.gif?cid=6c09b952zlh0cnyiluh6b2b25r4wllz1t8c4j30fmiuw6zvl&rid=giphy.gif&ct=s"
+              width="125px"
+            />
           </div>
         </div>
       </nav>

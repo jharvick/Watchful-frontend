@@ -2,11 +2,9 @@ export function FavoritesIndex(props) {
   return (
     <div>
       <h1>All favorites</h1>
+      <img src="https://www.fg-a.com/under-construction/under-construction-night.gif" width="500px" />
       {props.favorites.map((favorite) => (
-        <div key={favorite.id}>
-          <h2>{favorite.user_id}</h2>
-          <p>{favorite.item_id}</p>
-        </div>
+        <div key={favorite.id}></div>
       ))}
     </div>
   );

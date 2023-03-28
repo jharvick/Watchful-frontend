@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Alkatra&display=swap');
 
 html {
   scroll-behavior: smooth;
 }
 
 #root {
-  font-family: Futura, Trebuchet MS, Arial, sans-serif;
+  font-family: 'Alkatra', cursive;
   background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/darkness.png");
-  background-image: cover;
+  min-height: 100vh;
 }
 
 .card img {
@@ -16,6 +17,22 @@ html {
 }
 
 .navbar-brand {
-  font-family: "Climate Crisis", cursive;
+  font-family: 'Alkatra', cursive;
   font-size: 3em !important;
+}
+
+h1 {
+  color:chartreuse
+}
+
+h2 {
+  color:chartreuse
+}
+
+p {
+  color:chartreuse
+}
+
+div {
+  color:chartreuse
 }
