@@ -17,11 +17,8 @@ export function ItemsIndex(props) {
                   <h3 className="card-title">{item.name}</h3>
                   <p className="card-text">Category: {item.category}</p>
                   <p className="card-text">Year: {item.description}</p>
-                  <button type="button" class="btn btn-outline-dark" onClick={() => props.onShowItem(item)}>
-                    More info
-                  </button>
-                  <button type="button" class="btn btn-outline-dark" onClick={() => props.onCreateFavorite(favorite)}>
-                    Add favorite
+                  <button type="button" class="btn btn-outline-dark" onClick={() => props.onDestroyItem(item)}>
+                    Watched
                   </button>
                 </div>
               </div>
