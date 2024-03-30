@@ -57,7 +57,7 @@ export function Content() {
 
   const handleUpdateItem = (id, params, successCallback) => {
     console.log("handleUpdateItem", params);
-    axios.patch("http://localhost:3000/items/${id}.json", params).then((response) => {
+    axios.patch(`http://localhost:3000/items/${id}.json`, params).then((response) => {
       setItems(
         items.map((item) => {
           if (item.id === response.data.id) {
